@@ -1,0 +1,13 @@
+package testClasses;
+
+import twoSum.AddTwoNumbers;
+
+public class MainClass 
+{
+
+	public static void main(String[] args) 
+	{
+		new AddTwoNumbers();
+	}
+
+}

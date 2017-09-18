@@ -1,0 +1,17 @@
+package tests;
+import tree.BinaryTree;
+
+public class TreeTest 
+{
+	public TreeTest()
+	{
+		System.out.println("========== Tree Test ===========");
+		
+		//print inorder traversal of two trees
+		
+		BinaryTree t1 = new BinaryTree();
+		BinaryTree t2 = new BinaryTree();
+		t1.insert(t1, 5);
+		
+	}
+}

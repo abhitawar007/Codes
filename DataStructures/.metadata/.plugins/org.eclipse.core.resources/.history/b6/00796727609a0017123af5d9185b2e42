@@ -1,0 +1,63 @@
+package tests;
+
+import static org.junit.Assert.*;
+
+import java.util.Vector;
+
+import org.junit.Test;
+
+import tree.BinaryTree;
+import tree.Node;
+
+public class Test_Tree {
+
+	@Test
+	public void test() 
+	{
+		//print inorder traversal of two trees
+		BinaryTree tree1 = new BinaryTree();
+		BinaryTree tree2 = new BinaryTree();
+		
+		Node t1 = tree1.getRoot();
+		Node t2 = tree2.getRoot();
+		tree1.insert(t1, 15);
+		tree1.insert(t1, 11);
+		tree1.insert(t1, 19);
+		tree1.insert(t1, 17);
+		tree1.insert(t1, 13);
+
+		tree1.insert(t2, 14);
+		tree1.insert(t2, 12);
+		tree1.insert(t2, 16);
+		tree1.insert(t2, 20);
+		tree1.insert(t2, 18);
+		
+		String ret = inOrderTwoTrees(tree1, tree2);
+		assertEquals(ret, "11 12 13 14 15 16 17 18 19 20");
+	}
+	
+	String inOrderTwoTrees(BinaryTree t1, BinaryTree t2)
+	{
+		Vector<Integer> vec1 = new Vector<>(); 
+		vec1 = inOrder(t1.getRoot(), vec1);
+		
+		Vector<Integer> vec2 = new Vector<>();
+		vec2 = inOrder(t2.getRoot(), vec2);
+		
+		
+		return " ";
+	}
+	
+	Vector<Integer> inOrder(Node root, Vector<Integer> vec)
+	{
+		if(root == null)
+			return vec;
+		
+		vec = inOrder(root.left, vec);
+		vec.add(root.data);
+		vec = inOrder(root.right, vec);
+		
+		return vec;
+	}
+
+}

@@ -1,0 +1,49 @@
+package algorithms;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+public class LongestSubstring 
+{
+	public LongestSubstring()
+	{
+		/*
+		 * Given a string, find the length of the longest substring without repeating characters.
+		 * Examples:
+		 * Given "abcabcbb", the answer is "abc", which the length is 3.
+		 * Given "bbbbb", the answer is "b", with the length of 1.
+		 * Given "pwwkew", the answer is "wke", with the length of 3. 
+		 * Note that the answer must be a substring, "pwke" is a subsequence and not a substring
+		 */
+		Scanner reader = new Scanner(System.in);
+		System.out.println("Enter the string");
+		String str = reader.nextLine();
+		int ans = lengthOfSubstring(str);
+		System.out.println(ans);
+	}
+	
+	public int lengthOfSubstring(String str)
+	{
+		char[] charArray = str.toCharArray();
+		
+		int ret = 0;
+		Map<Integer, Character > map = new HashMap<>();
+		for(int i=0; i<charArray.length; i++)
+		{
+			if (map.containsValue(charArray[i]))
+			{
+				int tempInt = map.size();
+				if (tempInt > ret)
+					ret = tempInt;
+				for(int j=0; j<map.get(charArray[i]); j++)
+				{
+					map.remove(j);
+				}
+			}
+			map.put(charArray[i], i);
+		}
+		
+		return Math.max(ret, map.size());
+	}
+}

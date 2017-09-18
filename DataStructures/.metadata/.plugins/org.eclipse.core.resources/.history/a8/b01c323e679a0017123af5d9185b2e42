@@ -1,0 +1,12 @@
+package tests;
+import tree.BinaryTree;
+
+public class MainClass {
+
+	public static void main(String[] args) 
+	{
+		new BinaryTree(true);
+
+	}
+
+}
