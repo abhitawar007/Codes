@@ -1,0 +1,14 @@
+package testClasses;
+
+import algorithms.AddTwoNumbers;
+import linkedList.*;
+public class MainClass 
+{
+
+	public static void main(String[] args) 
+	{
+		new AddTwoNumbers();
+	
+	}
+
+}

@@ -1,0 +1,9 @@
+package twoSum;
+
+import linkedList.SinglyLinkedList;
+
+public class AddTwoNumbers 
+{
+	SinglyLinkedList sll1 = new SinglyLinkedList();
+	sll1.printList();
+}

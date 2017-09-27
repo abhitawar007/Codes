@@ -1,0 +1,19 @@
+package testClasses;
+
+import java.util.Vector;
+
+import algorithms.AddTwoNumbers;
+import algorithms.LongestSubstring;
+import linkedList.*;
+public class MainClass 
+{
+
+	public static void main(String[] args) 
+	{
+		Vector<Character> v = new Vector();
+		v.add('a');
+//		new LongestSubstring();
+//		new AddTwoNumbers();
+	}
+
+}
