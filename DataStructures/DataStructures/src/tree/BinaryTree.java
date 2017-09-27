@@ -1,6 +1,7 @@
 package tree;
 
 import java.util.Scanner;
+import java.util.Stack;
 
 public class BinaryTree 
 {
@@ -8,13 +9,12 @@ public class BinaryTree
 	public BinaryTree()
 	{}
 	
-	public BinaryTree(boolean manual)
+	public BinaryTree(Scanner in)
 	{
 		rootNode = null;
-		Scanner in = new Scanner(System.in);
 		while(true)
 		{
-			System.out.println("========= Level Order Tree ==========");
+			System.out.println("========= Binary Tree ==========");
 			System.out.println("Enter your choice :");
 			System.out.println("0: exit");
 			System.out.println("1: printTree");
@@ -38,16 +38,19 @@ public class BinaryTree
 				print(rootNode);
 				break;
 			case 3:
+				// NOT using recursion
 				System.out.println();
 				preOrderPrint(rootNode);
 				System.out.println();
 				break;
 			case 4:
+				// NOT using recursion
 				System.out.println();
 				inOrderPrint(rootNode);
 				System.out.println();
 				break;
 			case 5:
+				// NOT using recursion
 				System.out.println();
 				postOrderPrint(rootNode);
 				System.out.println();
@@ -123,40 +126,113 @@ public class BinaryTree
 		}
 	}
 	
-	void preOrderPrint(Node root)
+	void preOrderPrint(Node root, boolean recursion)
 	{
-		// root, root.left, root.right
+		// root, root.left, root.right using recursion
 		if(root == null)
 			return;
 		
 		System.out.print(root.data + " ");
-		preOrderPrint(root.left);
-		preOrderPrint(root.right);
-		
+		preOrderPrint(root.left, true);
+		preOrderPrint(root.right, true);
 	}
 	
-	void inOrderPrint(Node root)
+	void preOrderPrint(Node root)
+	{
+		Stack<Node> stack = new Stack<>();
+		Node curr = root;
+		
+		while(curr != null)
+		{
+			System.out.print(curr.data + " ");
+			stack.push(curr);
+			curr = curr.left;
+		}
+		
+		while(!stack.isEmpty())
+		{
+			curr = stack.pop();
+			if(curr.right != null)
+			{
+				curr = curr.right;
+				while(curr != null)
+				{
+					System.out.print(curr.data + " ");
+					stack.push(curr);
+					curr = curr.left;
+				}
+			}
+		}
+	}
+	void inOrderPrint(Node root, boolean recursion)
 	{
 		//root.left, root, root.right
 		if(root == null)
 			return;
 		
-		inOrderPrint(root.left);
+		inOrderPrint(root.left, true);
 		System.out.print(root.data + " ");
-		inOrderPrint(root.right);
+		inOrderPrint(root.right, true);
 	}
 	
-	void postOrderPrint(Node root)
+	void inOrderPrint(Node root)
+	{
+		Stack<Node> stack = new Stack<>();
+		Node curr = root;
+		while(curr != null)
+		{
+			stack.push(curr);
+			curr = curr.left;
+		}
+		
+		while(!stack.isEmpty())
+		{
+			curr = stack.pop();
+			System.out.print(curr.data + " ");
+			
+			if(curr.right != null)
+			{
+				curr = curr.right;
+				while(curr != null)
+				{
+					stack.push(curr);
+					curr = curr.left;
+				}
+			}
+		}
+	}
+	
+	void postOrderPrint(Node root, boolean recursion)
 	{
 		//root.left, root.right, root
 		
 		if(root == null)
 			return;
 		
-		postOrderPrint(root.left);
-		postOrderPrint(root.right);
+		postOrderPrint(root.left, true);
+		postOrderPrint(root.right, true);
 		System.out.print(root.data + " ");
+	}
+	
+	void postOrderPrint(Node root)
+	{
+		Stack<Node> s1 = new Stack<>();
+		Stack<Node> s2 = new Stack<>();
+		Node curr = root;
+		s1.push(curr);
 		
+		while(!s1.isEmpty())
+		{
+			curr = s1.pop();
+			s2.push(curr);
+			if(curr.left != null)
+				s1.push(curr.left);
+			if(curr.right != null)
+				s1.push(curr.right);
+		}
+		
+		while(!s2.isEmpty())
+			System.out.print(s2.pop().data + " ");
 	}
 
 	
@@ -223,6 +299,12 @@ public class BinaryTree
 					return root;
 				}
 				curr = curr.right;
+			}
+			
+			if(val == curr.data)
+			{
+				System.out.println("Value already exists!!!");
+				return root;
 			}
 		}
 	}
