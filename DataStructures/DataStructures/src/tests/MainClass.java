@@ -1,6 +1,5 @@
 package tests;
-import tree.BinaryTree;
-
+import tree.*;
 import java.util.Scanner;
 
 import linkedList.*;
@@ -17,6 +16,7 @@ public class MainClass
 			System.out.println("0: exit");
 			System.out.println("1: LinkedList");
 			System.out.println("2: Binary Tree");
+			System.out.println("3: AVL Tree");
 
 			switch(in.nextInt())
 			{
@@ -24,8 +24,13 @@ public class MainClass
 				return;
 			case 1:
 				new SinglyLinkedList(in);
+				break;
 			case 2:
 				new BinaryTree(in);
+				break;
+			case 3:
+				new AVLTree(in);
+				break;
 			}
 
 		}
